@@ -42,7 +42,6 @@ const addContact = async (body) => {
 
 const updateContact = async (contactId, body) => {
   const id = String(contactId);
-
   const contacts = await listContacts();
   const index = contacts.findIndex((c) => c.id === id);
 
