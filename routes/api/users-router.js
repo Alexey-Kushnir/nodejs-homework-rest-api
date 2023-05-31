@@ -6,21 +6,26 @@ const {
   logout,
   updateSubscription,
 } = require("../../controllers/users");
-const { validateBody, authenticate } = require("../../middlewares");
+const { validateBody, authenticate, jsonParser } = require("../../middlewares");
 const { userSchemas } = require("../../models");
 
 const router = express.Router();
 
 // signup
-router.post("/register", validateBody(userSchemas.registerSchema), register);
+router.post(
+  "/register",
+  jsonParser,
+  validateBody(userSchemas.registerSchema),
+  register
+);
 
 // signin
-router.post("/login", validateBody(userSchemas.loginSchema), login);
+router.post("/login", jsonParser, validateBody(userSchemas.loginSchema), login);
 
-router.patch("/:userId", authenticate, updateSubscription);
+router.patch("/:userId", jsonParser, authenticate, updateSubscription);
 
 router.get("/current", authenticate, getCurrent);
 
-router.post("/logout", authenticate, logout);
+router.post("/logout", jsonParser, authenticate, logout);
 
 module.exports = router;
