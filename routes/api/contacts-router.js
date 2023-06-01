@@ -17,14 +17,15 @@ const { contactSchemas } = require("../../models");
 
 const router = express.Router();
 
-router.get("/", authenticate, getAll);
+router.use(authenticate);
 
-router.get("/:contactId", authenticate, isValidId, getById);
+router.get("/", getAll);
+
+router.get("/:contactId", isValidId, getById);
 
 router.post(
   "/",
   jsonParser,
-  authenticate,
   validateBody(contactSchemas.addContactSchema),
   add
 );
@@ -32,7 +33,6 @@ router.post(
 router.put(
   "/:contactId",
   jsonParser,
-  authenticate,
   isValidId,
   validateBody(contactSchemas.addContactSchema),
   updateById
@@ -41,12 +41,11 @@ router.put(
 router.patch(
   "/:contactId/favorite",
   jsonParser,
-  authenticate,
   isValidId,
   validateBody(contactSchemas.updateFavoriteSchema),
   updateStatusContact
 );
 
-router.delete("/:contactId", authenticate, isValidId, deleteById);
+router.delete("/:contactId", isValidId, deleteById);
 
 module.exports = router;

@@ -9,11 +9,10 @@ mongoose.set("strictQuery", true);
 const startServer = async () => {
   try {
     await mongoose.connect(DB_HOST);
-    console.log("Database connection successful");
     app.listen(PORT);
-    console.log(`Server started on port ${PORT}`);
+    console.log(`DB connection successful, server started on port ${PORT}`);
   } catch (error) {
-    console.log(error.message);
+    console.log("DB connection failed:", error.message);
     process.exit(1);
   }
 };
