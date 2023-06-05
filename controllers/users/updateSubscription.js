@@ -12,7 +12,7 @@ const updateSubscription = async (req, res) => {
     if (!result) {
       throw HttpError(404, "User is not found");
     }
-    res.json(result);
+    return res.json(result);
   }
   throw HttpError(404, "Сhoose the right subscription type");
 };

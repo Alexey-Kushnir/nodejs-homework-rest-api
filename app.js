@@ -12,6 +12,9 @@ app.use(logger(formatsLogger));
 app.use(cors());
 // app.use(express.json());  use jsonParser middleware
 
+// for access to files by link
+app.use(express.static("public"));
+
 app.use("/api/users", usersRouter);
 app.use("/api/contacts", contactsRouter);
 

@@ -5,8 +5,14 @@ const {
   getCurrent,
   logout,
   updateSubscription,
+  updateAvatar,
 } = require("../../controllers/users");
-const { validateBody, authenticate, jsonParser } = require("../../middlewares");
+const {
+  validateBody,
+  authenticate,
+  jsonParser,
+  upload,
+} = require("../../middlewares");
 const { userSchemas } = require("../../models");
 
 const router = express.Router();
@@ -22,10 +28,12 @@ router.post(
 // signin
 router.post("/login", jsonParser, validateBody(userSchemas.loginSchema), login);
 
-router.patch("/:userId", jsonParser, authenticate, updateSubscription);
-
 router.get("/current", authenticate, getCurrent);
 
-router.post("/logout", jsonParser, authenticate, logout);
+router.post("/logout", authenticate, logout);
+
+router.patch("/avatars", authenticate, upload.single("avatar"), updateAvatar);
+
+router.patch("/:userId", authenticate, jsonParser, updateSubscription);
 
 module.exports = router;

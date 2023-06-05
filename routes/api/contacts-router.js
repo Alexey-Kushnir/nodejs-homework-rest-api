@@ -17,6 +17,7 @@ const { contactSchemas } = require("../../models");
 
 const router = express.Router();
 
+// use middleware for all routes
 router.use(authenticate);
 
 router.get("/", getAll);
@@ -40,8 +41,8 @@ router.put(
 
 router.patch(
   "/:contactId/favorite",
-  jsonParser,
   isValidId,
+  jsonParser,
   validateBody(contactSchemas.updateFavoriteSchema),
   updateStatusContact
 );
