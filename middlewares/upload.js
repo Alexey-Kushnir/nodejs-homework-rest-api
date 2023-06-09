@@ -12,7 +12,7 @@ const storage = multer.diskStorage({
   },
 });
 
-const limits = { fileSize: 1024 * 1024, fieldNameSize: 300 };
+const limits = { fileSize: 1 * 1024 * 1024, fieldNameSize: 100 };
 
 const fileFilter = (req, file, cb) => {
   const { mimetype } = file;
