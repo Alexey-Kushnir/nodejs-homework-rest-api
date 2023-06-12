@@ -19,12 +19,15 @@ describe("test login route", () => {
   //   beforeEach(async () => {});
 
   afterEach(async () => {
-    await User.findOneAndUpdate({ email: "user1@gmail.com" }, { token: null });
+    await User.findOneAndUpdate(
+      { email: "fovebet757@soremap.com" },
+      { token: null }
+    );
   });
 
   test("test login with correct data", async () => {
     const loginData = {
-      email: "user1@gmail.com",
+      email: "fovebet757@soremap.com",
       password: "111111",
     };
     const { statusCode, body } = await request(app)
