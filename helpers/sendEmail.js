@@ -8,6 +8,7 @@ const mailjet = new Mailjet({
 });
 
 const sendEmail = async (data) => {
+  const { to, subject, html } = data;
   await mailjet.post("send", { version: "v3.1" }).request({
     Messages: [
       {
@@ -17,13 +18,13 @@ const sendEmail = async (data) => {
         },
         To: [
           {
-            Email: data.to,
+            Email: to,
             Name: "New User",
           },
         ],
-        Subject: data.subject,
+        Subject: subject,
         TextPart: "Please follow the link to verify your email",
-        HTMLPart: data.html,
+        HTMLPart: html,
       },
     ],
   });
