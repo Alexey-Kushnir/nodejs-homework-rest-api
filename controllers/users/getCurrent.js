@@ -1,4 +1,4 @@
-const { ctrlWrapper } = require("../../helpers");
+const { ctrlWrapper } = require('../../helpers');
 
 const getCurrent = async (req, res) => {
   const { email, subscription } = req.user;

@@ -1,5 +1,5 @@
-const { Contact } = require("../../models");
-const { ctrlWrapper } = require("../../helpers");
+const { Contact } = require('../../models');
+const { ctrlWrapper } = require('../../helpers');
 
 const add = async (req, res) => {
   const { _id: owner } = req.user;

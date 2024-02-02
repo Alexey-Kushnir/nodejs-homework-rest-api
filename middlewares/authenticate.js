@@ -1,13 +1,13 @@
-const jwt = require("jsonwebtoken");
-const { User } = require("../models");
-const { HttpError } = require("../helpers");
+const jwt = require('jsonwebtoken');
+const { User } = require('../models');
+const { HttpError } = require('../helpers');
 const { SECRET_KEY } = process.env;
 
-const authenticate = async (req, res, next) => {
-  const { authorization = "" } = req.headers;
-  const [bearer, token] = authorization.split(" ");
+const authenticate = async (req, _, next) => {
+  const { authorization = '' } = req.headers;
+  const [bearer, token] = authorization.split(' ');
 
-  if (!token || bearer !== "Bearer") {
+  if (!token || bearer !== 'Bearer') {
     return next(HttpError(401));
   }
   try {

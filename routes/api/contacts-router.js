@@ -1,4 +1,4 @@
-const express = require("express");
+const express = require('express');
 const {
   getAll,
   getById,
@@ -6,33 +6,33 @@ const {
   updateById,
   updateStatusContact,
   deleteById,
-} = require("../../controllers/contacts");
+} = require('../../controllers/contacts');
 const {
   validateBody,
   isValidId,
   authenticate,
   jsonParser,
-} = require("../../middlewares");
-const { contactSchemas } = require("../../models");
+} = require('../../middlewares');
+const { contactSchemas } = require('../../models');
 
 const router = express.Router();
 
 // use middleware for all routes
 router.use(authenticate);
 
-router.get("/", getAll);
+router.get('/', getAll);
 
-router.get("/:contactId", isValidId, getById);
+router.get('/:contactId', isValidId, getById);
 
 router.post(
-  "/",
+  '/',
   jsonParser,
   validateBody(contactSchemas.addContactSchema),
   add
 );
 
 router.put(
-  "/:contactId",
+  '/:contactId',
   jsonParser,
   isValidId,
   validateBody(contactSchemas.addContactSchema),
@@ -40,13 +40,13 @@ router.put(
 );
 
 router.patch(
-  "/:contactId/favorite",
+  '/:contactId/favorite',
   isValidId,
   jsonParser,
   validateBody(contactSchemas.updateFavoriteSchema),
   updateStatusContact
 );
 
-router.delete("/:contactId", isValidId, deleteById);
+router.delete('/:contactId', isValidId, deleteById);
 
 module.exports = router;

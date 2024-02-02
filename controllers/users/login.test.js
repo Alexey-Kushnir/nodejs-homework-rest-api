@@ -1,10 +1,10 @@
-const mongoose = require("mongoose");
-const app = require("../../app");
-const request = require("supertest");
+const mongoose = require('mongoose');
+const app = require('../../app');
+const request = require('supertest');
 const { DB_HOST_TEST, PORT } = process.env;
-const { User } = require("../../models");
+const { User } = require('../../models');
 
-describe("test login route", () => {
+describe('test login route', () => {
   let server = null;
   beforeAll(async () => {
     server = app.listen(PORT);
@@ -20,18 +20,18 @@ describe("test login route", () => {
 
   afterEach(async () => {
     await User.findOneAndUpdate(
-      { email: "fovebet757@soremap.com" },
+      { email: 'fovebet757@soremap.com' },
       { token: null }
     );
   });
 
-  test("test login with correct data", async () => {
+  test('test login with correct data', async () => {
     const loginData = {
-      email: "fovebet757@soremap.com",
-      password: "111111",
+      email: 'fovebet757@soremap.com',
+      password: '111111',
     };
     const { statusCode, body } = await request(app)
-      .post("/api/users/login")
+      .post('/api/users/login')
       .send(loginData);
     expect(statusCode).toBe(200);
 

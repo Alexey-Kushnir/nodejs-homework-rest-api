@@ -1,19 +1,19 @@
-const bcrypt = require("bcrypt");
-const { nanoid } = require("nanoid");
-const { User } = require("../../models");
+const bcrypt = require('bcrypt');
+const { nanoid } = require('nanoid');
+const { User } = require('../../models');
+const gravatar = require('gravatar');
 const {
   HttpError,
   ctrlWrapper,
   sendEmail,
   verifyEmail,
-} = require("../../helpers");
-const gravatar = require("gravatar");
+} = require('../../helpers');
 
 const register = async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
   if (user) {
-    throw HttpError(409, "Email is already in use");
+    throw HttpError(409, 'Email is already in use');
   }
 
   const hashPassword = await bcrypt.hash(password, 10);
@@ -33,7 +33,7 @@ const register = async (req, res) => {
 
   res.status(201).json({
     email: newUser.email,
-    subscription: "starter",
+    subscription: 'starter',
   });
 };
 

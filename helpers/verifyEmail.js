@@ -1,6 +1,6 @@
 const { PROJECT_URL } = process.env;
 
-const verifyEmail = (email, verificationCode, subject = "Verify email") => {
+const verifyEmail = (email, verificationCode, subject = 'Verify email') => {
   return {
     to: email,
     subject: subject,

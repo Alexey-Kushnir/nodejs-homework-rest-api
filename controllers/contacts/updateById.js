@@ -1,5 +1,5 @@
-const { Contact } = require("../../models");
-const { HttpError, ctrlWrapper } = require("../../helpers");
+const { Contact } = require('../../models');
+const { HttpError, ctrlWrapper } = require('../../helpers');
 
 const updateById = async (req, res) => {
   const { contactId } = req.params;
@@ -7,7 +7,7 @@ const updateById = async (req, res) => {
     new: true,
   });
   if (!result) {
-    throw HttpError(404, "Not found");
+    throw HttpError(404, 'Not found');
   }
   res.json(result);
 };
